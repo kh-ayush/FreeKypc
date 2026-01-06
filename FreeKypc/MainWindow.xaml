@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FreeKypc"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TrioLingo" Height="400" Width="400">
     <Grid>
-
+        <StackPanel HorizontalAlignment="Stretch">
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="Edit">
+                    <MenuItem Header="New Category"/>
+                    <MenuItem Header="New Word"/>
+                    <MenuItem Header="Delete Category"/>
+                    <MenuItem Header="Delete Word"/>
+                </MenuItem>
+                <MenuItem Header="Source">
+                    <MenuItem Header="Save"/>
+                    <MenuItem Header="load"/>
+                </MenuItem>
+            </Menu>
+            
+            <UniformGrid Margin="10" Columns="3">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Text="Total:"/>
+                    <TextBlock Text="Correct:" Foreground="DarkGreen"/>
+                </StackPanel>
+                <ComboBox Margin="5"/>
+                <Button Content="Start" Margin="5"/>
+            </UniformGrid>
+            
+            <TextBlock d:Text="INOSTRANNYI WORD" FontSize="22" Margin="0,20,0,20"
+                       HorizontalAlignment="Center"/>
+            
+            <Button d:Content="PEREVOD 1" FontSize="18" Padding="5" 
+                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+            <Button d:Content="PEREVOD 2" FontSize="18" Padding="5"
+                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+            <Button d:Content="PEREVOD 3" FontSize="18" Padding="5"
+                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+            <Button d:Content="PEREVOD 4" FontSize="18" Padding="5"
+                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+        </StackPanel>
     </Grid>
 </Window>
