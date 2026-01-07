@@ -5,42 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FreeKypc"
         mc:Ignorable="d"
-        Title="TrioLingo" Height="400" Width="400">
+        Title="TrioLingo" Height="520" Width="400">
+    
     <Grid>
         <StackPanel HorizontalAlignment="Stretch">
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Edit">
-                    <MenuItem Header="New Category"/>
-                    <MenuItem Header="New Word"/>
-                    <MenuItem Header="Delete Category"/>
-                    <MenuItem Header="Delete Word"/>
+                    <MenuItem Header="New Word" Click="NewWord_Click"/>
+                    <MenuItem Header="Delete Word" Click="DeleteWord_Click"/>
                 </MenuItem>
                 <MenuItem Header="Source">
-                    <MenuItem Header="Save"/>
-                    <MenuItem Header="load"/>
+                    <MenuItem Header="Save" Click="Save_Click"/>
+                    <MenuItem Header="load" Click="Load_Click"/>
                 </MenuItem>
             </Menu>
-            
-            <UniformGrid Margin="10" Columns="3">
-                <StackPanel HorizontalAlignment="Left">
-                    <TextBlock Text="Total:"/>
-                    <TextBlock Text="Correct:" Foreground="DarkGreen"/>
-                </StackPanel>
-                <ComboBox Margin="5"/>
-                <Button Content="Start" Margin="5"/>
+
+            <UniformGrid Margin="20,20,20,10" Columns="2">
+                <UniformGrid Columns="1" VerticalAlignment="Center">
+                    <ComboBox Name="CategoryCB" Margin="5" SelectionChanged="CategoryCB_SelectionChanged"/>
+                    <TextBlock d:Text="X words left" Margin="5" HorizontalAlignment="Center"/>
+                </UniformGrid>
+                <Button Content="Start" Margin="10,0,0,0" Width="100"
+                        Height="35" VerticalAlignment="Center" Click="Start_Click"/>
             </UniformGrid>
-            
-            <TextBlock d:Text="INOSTRANNYI WORD" FontSize="22" Margin="0,20,0,20"
+
+            <TextBlock d:Text="INOSTRANNYI WORD" FontSize="22" Margin="0,10,0,20"
                        HorizontalAlignment="Center"/>
-            
+
             <Button d:Content="PEREVOD 1" FontSize="18" Padding="5" 
-                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+                    Margin="30,10,30,10" Background="WhiteSmoke" Click="Option_Click"/>
             <Button d:Content="PEREVOD 2" FontSize="18" Padding="5"
-                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+                    Margin="30,10,30,10" Background="WhiteSmoke" Click="Option_Click"/>
             <Button d:Content="PEREVOD 3" FontSize="18" Padding="5"
-                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+                    Margin="30,10,30,10" Background="WhiteSmoke" Click="Option_Click"/>
             <Button d:Content="PEREVOD 4" FontSize="18" Padding="5"
-                    Margin="30,10,30,10" Background="WhiteSmoke"/>
+                    Margin="30,10,30,20" Background="WhiteSmoke" Click="Option_Click"/>
+            
+            <UniformGrid Columns="4" Margin="20,10,20,20">
+                <GroupBox Header="Total">
+                    <StackPanel>
+                        <TextBlock Text="Correct:" FontSize="10"/>
+                        <TextBlock Text="Wrong:" FontSize="10"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Animals">
+                    <StackPanel>
+                        <TextBlock Text="Correct:" FontSize="10"/>
+                        <TextBlock Text="Wrong:" FontSize="10"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Vegetables">
+                    <StackPanel>
+                        <TextBlock Text="Correct:" FontSize="10"/>
+                        <TextBlock Text="Wrong:" FontSize="10"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Verbs">
+                    <StackPanel>
+                        <TextBlock Text="Correct:" FontSize="10"/>
+                        <TextBlock Text="Wrong:" FontSize="10"/>
+                    </StackPanel>
+                </GroupBox>
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Window>

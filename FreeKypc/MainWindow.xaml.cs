@@ -20,5 +20,34 @@ namespace FreeKypc
         {
             InitializeComponent();
         }
+        private void NewWord_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 nw = new Window2();
+            nw.ShowDialog();
+        }
+        private void DeleteWord_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void CategoryCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Option_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
