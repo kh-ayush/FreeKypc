@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace FreeKypc.Classes
 {
-    //public class CWordAnimals : CWord
-    //{
-    //}
-    //public class CWordVegetables : CWord
-    //{
-    //}
-    //public class CWordVerbs : CWord
-    //{
-    //}
+    public class CWordAnimals : CWord
+    {
+        public CWordAnimals(string orig, string trans)
+        {
+            Original = orig;
+            Translation = trans;
+        }
+    }
+    public class CWordVegetables : CWord
+    {
+    }
+    public class CWordVerbs : CWord
+    { 
+    }
 }

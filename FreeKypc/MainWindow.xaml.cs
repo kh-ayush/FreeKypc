@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using FreeKypc.Classes;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,11 +20,29 @@ namespace FreeKypc
         public MainWindow()
         {
             InitializeComponent();
+            currentword = new CWordAnimals("Dog", "Бабака");
+            wordlist.AddWord(currentword);
+            wordlist.AddWord(new CWordAnimals("Cat", "Кошка"));
+            wordlist.AddWord(new CWordAnimals("Horse", "Лошадь"));
+            wordlist.AddWord(new CWordAnimals("Cow", "Корова"));
+            wordlist.AddWord(new CWordAnimals("Wolf", "Волк"));
         }
+        CWordList wordlist = new CWordList();
+        CWord currentword;
+        List<string> otherwords;
         private void NewWord_Click(object sender, RoutedEventArgs e)
         {
             Window2 nw = new Window2();
             nw.ShowDialog();
+        }
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            MainWordTB.Text = currentword.GetOriginal();
+            otherwords = wordlist.GetFour(currentword);
+            AnswerButton1.Content = otherwords[0];
+            AnswerButton2.Content = otherwords[1];
+            AnswerButton3.Content = otherwords[2];
+            AnswerButton4.Content = otherwords[3];
         }
         private void DeleteWord_Click(object sender, RoutedEventArgs e)
         {
@@ -41,10 +60,7 @@ namespace FreeKypc
         {
 
         }
-        private void Start_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
         private void Option_Click(object sender, RoutedEventArgs e)
         {
 

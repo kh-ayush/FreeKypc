@@ -23,6 +23,11 @@ namespace FreeKypc.Classes
             Original = orig;
             Translation = trans;
         }
+        public CWord()
+        {
+            Original = "";
+            Translation = "";
+        }
         public string GetTranslation() { return Translation; }
         public string GetOriginal() { return Original; }
     }
