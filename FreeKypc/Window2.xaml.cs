@@ -1,6 +1,7 @@
 ﻿using FreeKypc.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,13 @@ namespace FreeKypc
     /// </summary>
     public partial class Window2 : Window
     {
-        public Window2()
+        private List<CWord> words;
+        public Window2(List<CWord> _words)
         {
             InitializeComponent();
+            words = _words;
+
+            CategoryCB.ItemsSource = words.Select(w => w.Category).Distinct();
         }
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
@@ -30,10 +35,8 @@ namespace FreeKypc
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-        }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            words.Add(new CWord(NameTB.Text, TransTB.Text, CategoryCB.Text));
+            this.Close();
         }
     }
 }

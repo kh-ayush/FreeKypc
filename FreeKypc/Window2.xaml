@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FreeKypc"
         mc:Ignorable="d"
-        Title="New Word" Height="180" Width="250">
+        Title="New Word" Height="180" Width="270">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2.5*"/>
@@ -15,15 +15,15 @@
         <StackPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,20,20,5">
                 <TextBlock Text="Word:" Margin="0,0,10,0"/>
-                <TextBox Width="160"/>
+                <TextBox Width="160" Name="NameTB"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,5,20,5">
-                <TextBlock Text="Transation:" Margin="0,0,10,0"/>
-                <TextBox Width="135"/>
+                <TextBlock Text="Translation:" Margin="0,0,10,0"/>
+                <TextBox Width="135" Name="TransTB"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,5,20,5">
                 <TextBlock Text="Category:" Margin="0,0,10,0"/>
-                <ComboBox Width="140" SelectionChanged="ComboBox_SelectionChanged"/>
+                <ComboBox Width="140" Name="CategoryCB"/>
             </StackPanel>
         </StackPanel>
         
