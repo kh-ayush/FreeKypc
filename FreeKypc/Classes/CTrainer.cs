@@ -19,7 +19,7 @@ namespace FreeKypc.Classes
     }
     public interface ITrainer 
     {
-        void Start(string category);    
+        void Start(string category, List<CWord> currentwords);    
         bool CheckAnswers(string answer);    
     }
     public class CTrainer : ITrainer
@@ -28,21 +28,19 @@ namespace FreeKypc.Classes
         public CStats Stats { get; } = new CStats();
         private CWord currentword;
         private Random rand = new Random();
-
-        //public event EventHandler<AnswerCheckedEventArgs> AnswerChecked;    
-        public CTrainer(List<CWord> words/*, CStats stats*/)
+        public CTrainer(List<CWord> words)
         {
             this.words = words;
-            //this.stats = stats;
         }
         public CWord CurrentWord => currentword;
         public List<string> CurrentAnswers { get; private set; }
-        public void Start(string category) 
+        public void Start(string category, List<CWord> currentwords) 
         {
-            var pool = words.Where(w => w.Category == category).ToList();
-            currentword = pool[rand.Next(pool.Count)];
+            var restpool = currentwords.Where(w => w.Category == category).ToList();
+            var wholepool = words.Where(w => w.Category == category).ToList();
+            currentword = restpool[rand.Next(restpool.Count)];
 
-            CurrentAnswers = pool.Select(w => w.Translation).Distinct().OrderBy(x => rand.Next()).Take(4).ToList();
+            CurrentAnswers = wholepool.Select(w => w.Translation).Distinct().OrderBy(x => rand.Next()).Take(4).ToList();
 
             if (!CurrentAnswers.Contains(currentword.Translation))
                 CurrentAnswers[0] = currentword.Translation;
@@ -54,8 +52,6 @@ namespace FreeKypc.Classes
             bool correct = (answer == currentword.Translation);
             Stats.AddResult(correct);
             return correct;
-
-            //AnswerChecked?.Invoke(this, new AnswerCheckedEventArgs(correct));
         }
     }
 }
