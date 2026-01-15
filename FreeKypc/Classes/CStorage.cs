@@ -8,12 +8,12 @@ using System.Text.Json;
 
 namespace FreeKypc.Classes
 {
-    public interface ISave
+    public interface ISaveWords
     {
         List<CWord> Load();
         void Save(List<CWord> words);
     }
-    public class CStorage : ISave
+    public class CStorage : ISaveWords
     {
         private const string filename = "words.json";
         public List<CWord> Load() 

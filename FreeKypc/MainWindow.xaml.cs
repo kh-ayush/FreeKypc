@@ -18,49 +18,52 @@ namespace FreeKypc
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ISave isave;
+        private ISaveWords isave;
         private List<CWord> words;
         private List<CWord> currentwords;
         private CTrainer trainer;
-        private int currentindex = -1;
         public MainWindow()
         {
             InitializeComponent();
+
             NextWordB.IsEnabled = false;
             isave = new CStorage();
-            words = new List<CWord>() { new CWord("monkey", "бибизян", "Animals"),
-                                        new CWord("beaver", "бобёр", "Animals"),
-                                        new CWord("sheep", "моя булочка", "Animals"),
-                                        new CWord("bober", "петух", "Animals"),
-                                        new CWord("buffalo", "буйвол", "Animals"),
+            words = new List<CWord>();  //{ new CWord("monkey", "бибизян", "Animals"),
+                                        //new CWord("beaver", "бобёр", "Animals"),
+                                        //new CWord("sheep", "кишка", "Animals"),
+                                        //new CWord("bober", "петух", "Animals"),
+                                        //new CWord("buffalo", "буйвол", "Animals"),
 
-                                        new CWord("carrot", "марков", "Vegetables"), 
-                                        new CWord("broccoli", "брокколи", "Vegetables"), 
-                                        new CWord("corgete", "кобачок", "Vegetables"), 
-                                        new CWord("cucumber", "огурец", "Vegetables"),
-                                        new CWord("pumpkin", "тыковка", "Vegetables"),
+                                        //new CWord("carrot", "марков", "Vegetables"), 
+                                        //new CWord("broccoli", "брокколи", "Vegetables"), 
+                                        //new CWord("corgete", "кобачок", "Vegetables"), 
+                                        //new CWord("cucumber", "огурец", "Vegetables"),
+                                        //new CWord("pumpkin", "тыковка", "Vegetables"),
 
-                                        new CWord("to translate", "переводить", "Verbs"),
-                                        new CWord("to type", "печатать", "Verbs"),
-                                        new CWord("to read", "читать", "Verbs"),
-                                        new CWord("to imagine", "воображать", "Verbs"),
-                                        new CWord("to dance", "танцевать", "Verbs") };
+                                        //new CWord("to translate", "переводить", "Verbs"),
+                                        //new CWord("to type", "печатать", "Verbs"),
+                                        //new CWord("to read", "читать", "Verbs"),
+                                        //new CWord("to imagine", "воображать", "Verbs"),
+                                        //new CWord("to dance", "танцевать", "Verbs") };
             trainer = new CTrainer(words);
 
             CategoryCB.ItemsSource = words.Select(x => x.Category).Distinct();
 
             DataContext = trainer.Stats;
+            CategoryCB.SelectedIndex = 0;
         }
         private void NewWord_Click(object sender, RoutedEventArgs e)
         {
             Window2 nw = new Window2(words);
             nw.ShowDialog();
+            currentwords = words;
+            trainer = new CTrainer(words);
+            DataContext = trainer.Stats;
             CategoryCB.ItemsSource = words.Select(x => x.Category).Distinct();
         }        
         private void NextWord_Click(object sender, RoutedEventArgs e)
         {
             NextWord();
-            ButtonsProp();
         }
         private void DeleteWord_Click(object sender, RoutedEventArgs e)
         {
@@ -70,7 +73,7 @@ namespace FreeKypc
                                 "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
+            
             words.Remove(trainer.CurrentWord);
             currentwords = words;
             trainer = new CTrainer(words);
@@ -89,7 +92,8 @@ namespace FreeKypc
             trainer = new CTrainer(words);
             DataContext = trainer.Stats;
             CategoryCB.ItemsSource = words.Select(x => x.Category).Distinct();
-            
+            CategoryCB.SelectedIndex = 0;
+
             NextWord();
         }
         private void Option_Click(object sender, RoutedEventArgs e)
@@ -110,13 +114,10 @@ namespace FreeKypc
                     currentwords.Remove(trainer.CurrentWord); 
                     NextWordB.IsEnabled = true;
                 }
-
                 AnswerButton1.IsHitTestVisible = false;
                 AnswerButton2.IsHitTestVisible = false;
                 AnswerButton3.IsHitTestVisible = false;
                 AnswerButton4.IsHitTestVisible = false;
-                
-                
             }
             else 
             {
@@ -126,7 +127,7 @@ namespace FreeKypc
         }
         private void CategoryCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentwords = words.Where(w => w.Category == CategoryCB.SelectedItem.ToString()).ToList();
+            currentwords = words;
             NextWordB.IsEnabled = false;
             NextWord();
         }

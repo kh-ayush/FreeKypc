@@ -27,13 +27,13 @@ namespace FreeKypc.Classes
         private readonly List<CWord> words;
         public CStats Stats { get; } = new CStats();
         private CWord currentword;
+        public CWord CurrentWord => currentword;
+        public List<string> CurrentAnswers { get; private set; }
         private Random rand = new Random();
         public CTrainer(List<CWord> words)
         {
             this.words = words;
         }
-        public CWord CurrentWord => currentword;
-        public List<string> CurrentAnswers { get; private set; }
         public void Start(string category, List<CWord> currentwords) 
         {
             var restpool = currentwords.Where(w => w.Category == category).ToList();
